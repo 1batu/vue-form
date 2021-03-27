@@ -84,6 +84,11 @@
       </li>
     </ul>
     <FormulateInput type="text" />
+    <vue-form-generator
+      :schema="schema"
+      :model="model"
+      :options="formOptions"
+    ></vue-form-generator>
   </div>
 </template>
 
@@ -92,6 +97,42 @@ export default {
   name: "HelloWorld",
   props: {
     msg: String,
+  },
+  data() {
+    return {
+      model: {
+        name: "",
+        username: "",
+        email: "",
+      },
+      schema: {
+        fields: [
+          {
+            type: "input",
+            inputType: "text",
+            label: "Name",
+            model: "name",
+          },
+          {
+            type: "input",
+            inputType: "text",
+            label: "Username",
+            model: "username",
+          },
+          {
+            type: "input",
+            inputType: "email",
+            label: "Email",
+            model: "email",
+          },
+        ],
+      },
+      formOptions: {
+        validateAfterLoad: false,
+        validateAfterChanged: false,
+        validateAsync: true,
+      },
+    };
   },
 };
 </script>
