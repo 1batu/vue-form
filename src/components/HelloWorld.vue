@@ -28,7 +28,7 @@
               </div>
             </div>
           </div>
-          <div class="card" style="margin-top: 3px">
+          <div class="card" style="margin-top: 3px" v-if="formStatus">
             <div class="card-body">
               <div class="col-md-12 d-flex justify-content-center">
                 <h2>Form Elemanları</h2>
@@ -71,6 +71,15 @@
                   </div>
                 </div>
               </div>
+              <div class="col-md-12" v-if="schema.length > 1">
+                <div class="card">
+                  <div class="card-body">
+                    <button class="btn btn-primary" @click="formButtonAdd">
+                      Formu Tamamla
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -93,6 +102,7 @@ export default {
   props: {},
   data() {
     return {
+      formStatus: true,
       formElementCount: [],
       model: {
         values: {},
@@ -115,6 +125,18 @@ export default {
         {
           name: "email",
           value: "Mail",
+        },
+        {
+          name: "date",
+          value: "Tarih",
+        },
+        {
+          name: "textarea",
+          value: "Uzun Metin",
+        },
+        {
+          name: "checkbox",
+          value: "Seçme İsteği",
         },
       ],
     };
@@ -145,6 +167,17 @@ export default {
     dataTypeChange(key, id, type) {
       let idChangeValue = document.getElementById(key).value;
       this.schema[id][type] = idChangeValue;
+    },
+    formButtonAdd() {
+      let verson = prompt("Form Submit Button Text", "Buton Adı");
+      if (verson != null) {
+        this.schema.push({
+          name: "submit",
+          type: "submit",
+          label: verson,
+        });
+        this.formStatus = false;
+      }
     },
   },
 };
