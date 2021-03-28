@@ -45,8 +45,28 @@
                         class="form-control"
                         :id="'baslik' + index"
                         @change="dataChange('baslik' + index, index, 'label')"
-                        placeholder="baslik"
+                        placeholder="Başlık"
                       />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1"
+                        >{{ index }}. Form Elemanı İçerik</label
+                      >
+                      <select
+                        class="form-control"
+                        :id="'icerik' + index"
+                        @change="
+                          dataTypeChange('icerik' + index, index, 'type')
+                        "
+                      >
+                        <option
+                          v-for="data in dataType"
+                          :key="data.name"
+                          :value="data.name"
+                        >
+                          {{ data.value }}
+                        </option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -83,6 +103,20 @@ export default {
           children: "",
         },
       ],
+      dataType: [
+        {
+          name: "text",
+          value: "Yazı",
+        },
+        {
+          name: "password",
+          value: "Şifre",
+        },
+        {
+          name: "email",
+          value: "Mail",
+        },
+      ],
     };
   },
   watch: {},
@@ -98,6 +132,7 @@ export default {
           label: "Your name",
           name: "name",
           validation: "required",
+          type: "text",
         });
         count++;
       }
@@ -106,6 +141,10 @@ export default {
       let idChangeValue = document.getElementById(key).value;
       this.schema[id][type] = idChangeValue;
       this.schema[id]["name"] = idChangeValue;
+    },
+    dataTypeChange(key, id, type) {
+      let idChangeValue = document.getElementById(key).value;
+      this.schema[id][type] = idChangeValue;
     },
   },
 };
