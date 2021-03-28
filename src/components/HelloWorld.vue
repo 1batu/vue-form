@@ -3,6 +3,9 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-6">
+          <div class="col-md-12 d-flex justify-content-center">
+            <h2>DEMO FORM BUILD</h2>
+          </div>
           <div class="card">
             <div class="card-body">
               <div class="form-group">
@@ -84,6 +87,9 @@
           </div>
         </div>
         <div class="col-md-6">
+          <div class="col-md-12 d-flex justify-content-center">
+            <h2>DEMO FORM VIEW</h2>
+          </div>
           <div class="card">
             <div class="card-body">
               <FormulateForm v-model="model.values" :schema="schema" />
